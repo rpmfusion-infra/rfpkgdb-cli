@@ -53,7 +53,7 @@ Get and Run the Source
 
 ::
 
-  dnf install python-virtualenvwrapper fedora-cert
+  dnf install python-virtualenvwrapper rpmfusion-cert
 
 * Create the virtual environment
 

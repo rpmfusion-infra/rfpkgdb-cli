@@ -9,7 +9,7 @@ import uuid
 from functools import wraps
 from six.moves import input
 
-import fedora_cert
+import rpmfusion_cert
 
 from pkgdb2client import PkgDB, PkgDBException
 
@@ -19,7 +19,7 @@ AUTH = True
 
 if AUTH:
     try:
-        USERNAME = fedora_cert.read_user_cert()
+        USERNAME = rpmfusion_cert.read_user_cert()
     except:
         USERNAME = input('FAS username: ')
     PASSWORD = getpass.getpass('FAS password: ')

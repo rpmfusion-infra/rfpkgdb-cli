@@ -23,7 +23,7 @@ import tempfile
 import datetime
 
 import requests
-import fedora_cert
+import rpmfusion_cert
 import xmlrpclib
 
 from bugzilla import Bugzilla
@@ -32,9 +32,9 @@ from fedora.client import AccountSystem, AuthError
 import pkgdb2client
 
 try:
-    USERNAME = fedora_cert.read_user_cert()
-except fedora_cert.fedora_cert_error:
-    pkgdb2client.LOG.debug('Could not read Fedora cert, asking for username')
+    USERNAME = rpmfusion_cert.read_user_cert()
+except rpmfusion_cert.rpmfusion_cert_error:
+    pkgdb2client.LOG.debug('Could not read Rpmfusion cert, asking for username')
     USERNAME = None
 
 BZCLIENT = None

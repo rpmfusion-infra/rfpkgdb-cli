@@ -21,7 +21,7 @@ import pkg_resources
 
 from six.moves import input, xrange
 
-import fedora_cert
+import rpmfusion_cert
 from fedora.client import AuthError
 from fedora.client import OpenIdBaseClient
 
@@ -76,9 +76,9 @@ def ask_password(username=None, bad_password=False):
         print("Bad password, please retry")
     if not username:
         try:
-            username = fedora_cert.read_user_cert()
-        except fedora_cert.fedora_cert_error:
-            LOG.debug('Could not read Fedora cert, asking for username')
+            username = rpmfusion_cert.read_user_cert()
+        except rpmfusion_cert.rpmfusion_cert_error:
+            LOG.debug('Could not read Rpmfusion cert, asking for username')
             username = input("Username: ")
     password = getpass.getpass("FAS password for user {0}: ".format(username))
     return username, password
