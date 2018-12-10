@@ -40,11 +40,11 @@ hand = NullHandler()
 LOG.addHandler(hand)
 
 __version__ = pkg_resources.get_distribution('packagedb-cli').version
-PKGDB_URL = r'https://admin.fedoraproject.org/pkgdb'
-FAS_URL = r'https://admin.fedoraproject.org/accounts'
-BZ_URL = r'https://bugzilla.redhat.com/xmlrpc.cgi'
-KOJI_HUB = r'https://koji.fedoraproject.org/kojihub'
-CGIT_URL = r'http://pkgs.fedoraproject.org/cgit'
+PKGDB_URL = r'https://admin.rpmfusion.org/pkgdb'
+FAS_URL = r'https://admin.rpmfusion.org/accounts'
+BZ_URL = r'https://bugzilla.rpmfusion.org/xmlrpc.cgi'
+KOJI_HUB = r'https://koji.rpmfusion.org/kojihub'
+CGIT_URL = r'http://pkgs.rpmfusion.org/cgit'
 
 
 class PkgDBException(Exception):
