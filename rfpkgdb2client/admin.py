@@ -74,7 +74,8 @@ def setup_parser():
     parser.add_argument('--bzurl', default=rfpkgdb2client.BZ_URL,
                         help="Base url of the bugzilla instance to query.")
 
-    subparsers = parser.add_subparsers(title='actions')
+    subparsers = parser.add_subparsers(title='actions', dest='command')
+    subparsers.required = True
 
     # LIST
     parser_list = subparsers.add_parser(
