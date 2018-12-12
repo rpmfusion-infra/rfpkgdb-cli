@@ -20,7 +20,7 @@ The `PackageDB-cli` was started in May of 2011 to allow user to consult the
 package collection and to manage their Access Control List (ACL) using a simple
 interface web free interface.
 
-.. _`PackageDB-cli`: https://fedorahosted.org/packagedb-cli
+.. _`PackageDB-cli`: https://pagure.io/pkgdb-cli
 
 As of 2014, this project has been ported to
 `pkgdb2 <https://github.com/fedora-infra/pkgdb2>`_. At this occasion, it is
@@ -72,7 +72,7 @@ Get and Run the Source
 
 ::
 
-  git clone http://github.com/rpmfusion-infra/rfpkgdb-cli.git
+  git clone http://github.com/ferdnyc/rfpkgdb-cli.git
   cd rfpkgdb-cli
 
 * Set up the project
