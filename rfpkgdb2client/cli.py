@@ -669,7 +669,7 @@ def do_list(args):
         if args.name_only:
             out = "   " + pkg['name']
 
-        print(out.encode('utf-8'))
+        print(out)
         cnt = cnt + 1
     if not args.name_only:
         print('Total: {0} packages'.format(cnt))
