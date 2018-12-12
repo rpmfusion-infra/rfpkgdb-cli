@@ -2,10 +2,11 @@
 RPMFusion PackageDB-cli
 =======================
 
-:Author: Pierre-Yves Chibon
-:Contact: pingou@fedoraproject.org
-:Date: Wed Jan 18 2017
-:Version: 2.14.1
+:Maintainer: FeRD (Frank Dana)
+:Contact: ferdnyc@gmail.com
+:Date: Wed Dec 12 2018
+:Version: 2.15.0_rc1
+:Author: Pierre-Yves Chibon <pingou@fedoraproject.org>
 
 The `rfpkgdb-cli` is a commande line interface to the PackageDB of RPMFusion.
 
