@@ -16,7 +16,11 @@
 # See http://www.gnu.org/copyleft/gpl.html  for the full text of the
 # license.
 """
+from __future__ import print_function
 
+from builtins import str
+from builtins import input
+from builtins import range
 import getpass
 import logging
 import pkg_resources
@@ -81,7 +85,7 @@ def ask_password(username=None, bad_password=False):
             username = rpmfusion_cert.read_user_cert()
         except rpmfusion_cert.rpmfusion_cert_error:
             LOG.debug('Could not read Rpmfusion cert, asking for username')
-            username = input("Username: ")
+            username = eval(input("Username: "))
     password = getpass.getpass("FAS password for user {0}: ".format(username))
     return username, password
 
@@ -180,7 +184,7 @@ class PkgDB(OpenIdBaseClient):
             password = None
             username = None
             success = False
-            for count in xrange(self.login_attempts):
+            for count in range(self.login_attempts):
                 if not username or not password or bad_password:
                     if self.login_callback:
                         username, password = self.login_callback(

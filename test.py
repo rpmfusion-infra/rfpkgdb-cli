@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from builtins import str
+from builtins import input
 import datetime
 import getpass
 import time
@@ -21,7 +23,7 @@ if AUTH:
     try:
         USERNAME = rpmfusion_cert.read_user_cert()
     except:
-        USERNAME = input('FAS username: ')
+        USERNAME = eval(input('FAS username: '))
     PASSWORD = getpass.getpass('FAS password: ')
     if not PASSWORD:
         AUTH = False

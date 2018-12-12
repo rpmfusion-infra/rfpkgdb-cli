@@ -16,7 +16,10 @@
 # See http://www.gnu.org/copyleft/gpl.html  for the full text of the
 # license.
 """
+from __future__ import print_function
 
+from builtins import input
+from builtins import str
 from fedora.client import (AppError, ServerError)
 
 import argparse
@@ -267,7 +270,7 @@ def _ask_what_to_do(messages):
         print("==> " + "All checks were good")
 
     print('\nWhat should we do about this requests?')
-    action = input('approve, deny, pass: ')
+    action = eval(input('approve, deny, pass: '))
     if action.lower() not in ['a', 'd', 'p', 'approve', 'deny', 'pass']:
         print('No valid action specified, just ignoring for now')
         action = 'pass'
@@ -287,9 +290,9 @@ def approve_action(actionid):
 
 
 def deny_action(actionid):
-    message = input(
+    message = eval(input(
         'Could you explain why you declined this request? (this message '
-        'will be sent to the user)\n=>')
+        'will be sent to the user)\n=>'))
     result = PKGDBCLIENT.handle_api_call(
         '/admin/action/status',
         data={
@@ -504,10 +507,10 @@ def __handle_request_unretire(actionid, action):
     if decision in ('a', 'approve'):
         cmd = ("pkgdb-cli", "unorphan", "--poc", action['info']['pkg_poc'],
                action['info']['pkg_name'], action['info']['pkg_collection'])
-        input("Please run the following command (confirm with any key): " +
-              " ".join(cmd))
-        input("Please make sure the package is properly unblocked in koji. "
-              "(Confirm with any key)")
+        eval(input("Please run the following command (confirm with any key): " +
+              " ".join(cmd)))
+        eval(input("Please make sure the package is properly unblocked in koji. "
+              "(Confirm with any key)"))
 
         data = approve_action(actionid)
 
