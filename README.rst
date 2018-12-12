@@ -1,6 +1,6 @@
-=======================
+#######################
 RPMFusion PackageDB-cli
-=======================
+#######################
 
 :Maintainer: FeRD (Frank Dana)
 :Contact: ferdnyc@gmail.com
@@ -8,39 +8,43 @@ RPMFusion PackageDB-cli
 :Version: 2.15.0rc2
 :Author: Pierre-Yves Chibon <pingou@fedoraproject.org>
 
-The `rfpkgdb-cli` is a commande line interface to the PackageDB of RPMFusion.
+
+The `rfpkgdb-cli`_ is a command line interface to the PackageDB of RPMFusion.
 
 .. contents::
 
--------
+*******
 Project
--------
+*******
 
-The `PackageDB-cli` was started in May of 2011 to allow user to consult the
+`PackageDB-cli <https://pagure.io/pkgdb-cli>`_
+-----------------------------------------------
+
+The `PackageDB-cli`_ was started in May of 2011 to allow user to consult the
 package collection and to manage their Access Control List (ACL) using a simple
 interface web free interface.
-
-.. _`PackageDB-cli`: https://pagure.io/pkgdb-cli
 
 As of 2014, this project has been ported to
 `pkgdb2 <https://github.com/fedora-infra/pkgdb2>`_. At this occasion, it is
 has been re-written to propose a python module to query pkgdb2 API as well
-as the pkgdb2client.cli module containing the command line interface and the
-pkgdb2client.admin module containing a command line interface for admins to
+as the ``pkgdb2client.cli`` module containing the command line interface and the
+``pkgdb2client.admin`` module containing a command line interface for admins to
 interact with `pkgdb2`_.
 
+`rfpkgdb-cli <https://github.com/ferdnyc/rfpkgdb-cli>`_
+-------------------------------------------------------
+
 In December 2018 the package was forked and adopted at rpmfusion as
-`rfpkgdb-cli` after being orphaned at Fedora, as it is still used
+`rfpkgdb-cli`_ after being orphaned at Fedora, as it is still used
 with various RPMFusion infra tools and needed to be converted for
 Python 3 compatibility.
 
-------------
+************
 Installation
-------------
-
+************
 
 Install Prerequisites
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 ::
 
@@ -48,7 +52,7 @@ Install Prerequisites
 
 
 Get and Run the Source
-~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 * Install python-virtualenvwrapper
 
