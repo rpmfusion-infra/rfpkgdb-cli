@@ -8,9 +8,9 @@ from setuptools import setup
 setup(
     name='rfpkgdb-cli',
     description='A command line tool to access the Rpmfusion Package Database.',
-    version='2.15.0_rc1',
+    version='2.15.0rc2',
     license='GPLv2+',
-    download_url='https://github.com/ferdnyc/rfpkgdb-cli/releases/tag/v2.15.0_rc1',
+    download_url='https://github.com/ferdnyc/rfpkgdb-cli/releases/tag/v2.15.0rc2',
     url='https://github.com/ferdnyc/rfpkgdb-cli',
     author='Pierre-Yves Chibon',
     author_email='pingou@pingoured.fr',
