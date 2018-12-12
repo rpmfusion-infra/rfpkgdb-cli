@@ -110,7 +110,7 @@ class PkgDB(OpenIdBaseClient):
             `bad_password`. Username is the currently known username (can be
             None) and bad_password is a bool to specifies whether a bad
             password was supplied earlier. It needs to return a (username,
-            password) tuple. See pkgdb2client.ask_password() for an example.
+            password) tuple. See rfpkgdb2client.ask_password() for an example.
         :type login_callback: function
         :kwarg login_attempts: How often a login might fail after
             login_callback() was called before a API call fails permanently.

@@ -197,7 +197,7 @@ def setup_parser():
     '''
     Set the main arguments.
     '''
-    parser = argparse.ArgumentParser(prog="pkgdb-cli")
+    parser = argparse.ArgumentParser(prog="rfpkgdb-cli")
     # General connection options
     parser.add_argument('--user', dest="username",
                         help="FAS username")
@@ -211,9 +211,9 @@ def setup_parser():
     parser.add_argument('--debug', action='store_true',
                         help="Outputs bunches of debugging info")
     parser.add_argument('--version', action='version',
-                        version='pkgdb-cli %s' % (__version__))
+                        version='rfpkgdb-cli %s' % (__version__))
     parser.add_argument('--insecure', action='store_true', default=False,
-                        help="Tells pkgdb-cli to ignore invalid SSL "
+                        help="Tells rfpkgdb-cli to ignore invalid SSL "
                         "certificates")
     parser.add_argument('--pkgdburl', default=rfpkgdb2client.PKGDB_URL,
                         help="Base url of the pkgdb instance to query.")

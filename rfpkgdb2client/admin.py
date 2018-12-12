@@ -64,11 +64,11 @@ def setup_parser():
     parser.add_argument('--insecure', action='store_true', default=False,
                         help="Tells rfpkgdb-cli to ignore invalid SSL "
                         "certificates")
-    parser.add_argument('--pkgdburl', default=pkgdb2client.PKGDB_URL,
+    parser.add_argument('--pkgdburl', default=rfpkgdb2client.PKGDB_URL,
                         help="Base url of the pkgdb instance to query.")
-    parser.add_argument('--fasurl', default=pkgdb2client.FAS_URL,
+    parser.add_argument('--fasurl', default=rfpkgdb2client.FAS_URL,
                         help="Base url of the FAS instance to query.")
-    parser.add_argument('--bzurl', default=pkgdb2client.BZ_URL,
+    parser.add_argument('--bzurl', default=rfpkgdb2client.BZ_URL,
                         help="Base url of the bugzilla instance to query.")
 
     subparsers = parser.add_subparsers(title='actions')
@@ -563,7 +563,7 @@ def do_process(args):
                 action['collection'] = {
                     'branchname': action['info']['pkg_collection']}
 
-            except pkgdb2client.PkgDBException:
+            except rfpkgdb2client.PkgDBException:
                 pass
 
         if action['action'] == 'request.package':
@@ -601,21 +601,21 @@ def main():
         LOG.setLevel(logging.INFO)
 
     global PKGDBCLIENT
-    if arg.pkgdburl != pkgdb2client.PKGDB_URL:
+    if arg.pkgdburl != rfpkgdb2client.PKGDB_URL:
         LOG.info("Querying pkgdb at: %s", arg.pkgdburl)
         PKGDBCLIENT = PkgDB(
             arg.pkgdburl,
-            login_callback=pkgdb2client.ask_password)
+            login_callback=rfpkgdb2client.ask_password)
 
     PKGDBCLIENT.insecure = arg.insecure
 
-    if arg.bzurl != pkgdb2client.BZ_URL:
+    if arg.bzurl != rfpkgdb2client.BZ_URL:
         if not arg.bzurl.endswith('xmlrpc.cgi'):
             arg.bzurl = '%s/xmlrpc.cgi' % arg.bzurl
         LOG.info("Querying bugzilla at: %s", arg.bzurl)
         utils._get_bz(arg.bzurl, insecure=arg.insecure)
 
-    if arg.fasurl != pkgdb2client.FAS_URL:
+    if arg.fasurl != rfpkgdb2client.FAS_URL:
         LOG.info("Querying FAS at: %s", arg.fasurl)
         utils._get_fas(arg.fasurl, insecure=arg.insecure)
 
