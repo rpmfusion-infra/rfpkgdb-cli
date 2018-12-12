@@ -8,14 +8,14 @@ from setuptools import setup
 setup(
     name='rfpkgdb-cli',
     description='A command line tool to access the Rpmfusion Package Database.',
-    version='2.15.0',
+    version='2.15.0_rc1',
     license='GPLv2+',
-    download_url='https://github.com/rpmfusion-infra/rfpkgdb-cli',
-    url='https://github.com/rpmfusion-infra/rfpkgdb-cli',
+    download_url='https://github.com/ferdnyc/rfpkgdb-cli/releases/tag/v2.15.0_rc1',
+    url='https://github.com/ferdnyc/rfpkgdb-cli',
     author='Pierre-Yves Chibon',
     author_email='pingou@pingoured.fr',
-    maintainer='RPMFusion rfpkgdb-cli Maintainers',
-    maintainer_email='rfpkgdb-cli-maint@rpmfusion.org',
+    maintainer='FeRD (Frank Dana)',
+    maintainer_email='ferdnyc@gmail.com',
     packages=['rfpkgdb2client'],
     entry_points={
         'console_scripts': [
