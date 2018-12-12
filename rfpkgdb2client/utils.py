@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 """
-# pkgdb2 - a commandline admin frontend for the Fedora package database
+# rfpkgdb2 - a commandline admin frontend for the Rpmfusion package database
 #
 # Copyright (C) 2014-2015 Red Hat Inc
 # Copyright (C) 2014 Pierre-Yves Chibon
 # Author: Pierre-Yves Chibon <pingou@pingoured.fr>
+#
+# RPMFusion version by FeRD (Frank Dana)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,19 +31,19 @@ import xmlrpclib
 from bugzilla import Bugzilla
 from fedora.client import AccountSystem, AuthError
 
-import pkgdb2client
+import rfpkgdb2client
 
 try:
     USERNAME = rpmfusion_cert.read_user_cert()
 except rpmfusion_cert.rpmfusion_cert_error:
-    pkgdb2client.LOG.debug('Could not read Rpmfusion cert, asking for username')
+    rfpkgdb2client.LOG.debug('Could not read Rpmfusion cert, asking for username')
     USERNAME = None
 
 BZCLIENT = None
 FASCLIENT = None
 
 
-def _get_bz(url=pkgdb2client.BZ_URL, insecure=False):
+def _get_bz(url=rfpkgdb2client.BZ_URL, insecure=False):
     ''' Return a bugzilla object. '''
     global BZCLIENT
     if not BZCLIENT or BZCLIENT.url != url:
@@ -57,7 +59,7 @@ def _get_bz(url=pkgdb2client.BZ_URL, insecure=False):
     return BZCLIENT
 
 
-def _get_fas(url=pkgdb2client.FAS_URL, insecure=False):
+def _get_fas(url=rfpkgdb2client.FAS_URL, insecure=False):
     ''' Return a bugzilla object. '''
     global FASCLIENT
     if not FASCLIENT or FASCLIENT.base_url != url:
@@ -178,7 +180,7 @@ def __get_fas_user_by_email(email_address):
                 columns=['id']
             )
         except AuthError:
-            username, password = pkgdb2client.ask_password()
+            username, password = rfpkgdb2client.ask_password()
             FASCLIENT.username = username
             FASCLIENT.password = password
             userid = FASCLIENT.people_query(
@@ -193,7 +195,7 @@ def __get_fas_user_by_email(email_address):
         try:
             user = FASCLIENT.person_by_id(userid)
         except AuthError:
-            username, password = pkgdb2client.ask_password()
+            username, password = rfpkgdb2client.ask_password()
             FASCLIENT.username = username
             FASCLIENT.password = password
             user = FASCLIENT.person_by_id(userid)
@@ -244,7 +246,7 @@ def is_packager(user):
         try:
             fas_user = FASCLIENT.person_by_username(user)
         except AuthError:
-            username, password = pkgdb2client.ask_password()
+            username, password = rfpkgdb2client.ask_password()
             FASCLIENT.username = username
             FASCLIENT.password = password
             fas_user = FASCLIENT.person_by_username(user)
@@ -383,7 +385,7 @@ def check_branch_creation(pkgdbclient, pkg_name, clt_name, user,
     if not new_pkg:
         try:
             pkginfo = pkgdbclient.get_package(pkg_name, namespace=namespace)
-        except pkgdb2client.PkgDBException:
+        except rfpkgdb2client.PkgDBException:
             messages["bad"].append(
                 'Package {0} not found in pkgdb'.format(pkg_name)
             )
@@ -451,7 +453,7 @@ def get_rhel_cache(rhel_ver):
     else:
         req = requests.get(url)
         if req.status_code != 200:
-            raise pkgdb2client.PkgDBException(
+            raise rfpkgdb2client.PkgDBException(
                 'Invalid RHEL version provided, json file not found')
         data = req.json()
         with open(output_filename, 'w') as stream:

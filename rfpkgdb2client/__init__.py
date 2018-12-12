@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 """
-# pkgdb2 - a python module to query the Fedora package database v2
+# rfpkgdb2 - a python module to query the Rpmfusion package database v2
 #
 # Copyright (C) 2014-2015 Red Hat Inc
 # Copyright (C) 2013 Pierre-Yves Chibon
 # Author: Pierre-Yves Chibon <pingou@pingoured.fr>
+#
+# RPMFusion version by FeRD (Frank Dana)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,13 +35,13 @@ class NullHandler(logging.Handler):
     def emit(self, record):
         pass
 
-LOG = logging.getLogger("pkgdb2client")
+LOG = logging.getLogger("rfpkgdb2client")
 
 # Add the null handler to top-level logger used by the library
 hand = NullHandler()
 LOG.addHandler(hand)
 
-__version__ = pkg_resources.get_distribution('packagedb-cli').version
+__version__ = pkg_resources.get_distribution('rfpkgdb-cli').version
 PKGDB_URL = r'https://admin.rpmfusion.org/pkgdb'
 FAS_URL = r'https://admin.rpmfusion.org/accounts'
 BZ_URL = r'https://bugzilla.rpmfusion.org/xmlrpc.cgi'

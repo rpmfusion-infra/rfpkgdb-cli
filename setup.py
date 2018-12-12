@@ -6,19 +6,21 @@ Setup script
 from setuptools import setup
 
 setup(
-    name='packagedb-cli',
-    description='A command line tool to access the Fedora Package Database.',
-    version='2.14.1',
+    name='rfpkgdb-cli',
+    description='A command line tool to access the Rpmfusion Package Database.',
+    version='2.15.0',
     license='GPLv2+',
-    download_url='https://fedorahosted.org/releases/p/a/packagedb-cli/',
-    url='https://fedorahosted.org/packagedb-cli/',
+    download_url='https://github.com/rpmfusion-infra/rfpkgdb-cli',
+    url='https://github.com/rpmfusion-infra/rfpkgdb-cli',
     author='Pierre-Yves Chibon',
     author_email='pingou@pingoured.fr',
-    packages=['pkgdb2client'],
+    maintainer='RPMFusion rfpkgdb-cli Maintainers',
+    maintainer_email='rfpkgdb-cli-maint@rpmfusion.org',
+    packages=['rfpkgdb2client'],
     entry_points={
         'console_scripts': [
-            "pkgdb-cli=pkgdb2client.cli:main",
-            "pkgdb-admin=pkgdb2client.admin:main",
+            "rfpkgdb-cli=rfpkgdb2client.cli:main",
+            "rfpkgdb-admin=rfpkgdb2client.admin:main",
         ]
     },
     install_requires=[

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 """
-# pkgdb2 - a commandline admin frontend for the Fedora package database
+# rfpkgdb2 - a commandline admin frontend for the Rpmfusion package database
 #
 # Copyright (C) 2014-2015 Red Hat Inc
 # Copyright (C) 2014 Pierre-Yves Chibon
 # Author: Pierre-Yves Chibon <pingou@pingoured.fr>
+#
+# RPMFusion version by FeRD (Frank Dana)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,14 +25,14 @@ import logging
 
 from six.moves import input
 
-from pkgdb2client import PkgDB, PkgDBException, __version__
-from pkgdb2client.cli import ActionError
-import pkgdb2client
-import pkgdb2client.utils as utils
+from rfpkgdb2client import PkgDB, PkgDBException, __version__
+from rfpkgdb2client.cli import ActionError
+import rfpkgdb2client
+import rfpkgdb2client.utils as utils
 
 
 PKGDBCLIENT = PkgDB(
-    pkgdb2client.PKGDB_URL, login_callback=pkgdb2client.ask_password)
+    rfpkgdb2client.PKGDB_URL, login_callback=rfpkgdb2client.ask_password)
 
 BOLD = "\033[1m"
 RED = "\033[0;31m"
@@ -38,15 +40,15 @@ RESET = "\033[0;0m"
 
 # Initial simple logging stuff
 logging.basicConfig()
-PKGDBLOG = logging.getLogger("pkgdb2client")
-LOG = logging.getLogger("pkgdb-admin")
+PKGDBLOG = logging.getLogger("rfpkgdb2client")
+LOG = logging.getLogger("rfpkgdb-admin")
 
 
 def setup_parser():
     '''
     Set the main arguments.
     '''
-    parser = argparse.ArgumentParser(prog="pkgdb-admin")
+    parser = argparse.ArgumentParser(prog="rfpkgdb-admin")
     # General connection options
     parser.add_argument('--user', dest="username",
                         help="FAS username")
@@ -58,9 +60,9 @@ def setup_parser():
     parser.add_argument('--debug', action='store_true',
                         help="Outputs bunches of debugging info")
     parser.add_argument('--version', action='version',
-                        version='pkgdb-admin %s' % (__version__))
+                        version='rfpkgdb-admin %s' % (__version__))
     parser.add_argument('--insecure', action='store_true', default=False,
-                        help="Tells pkgdb-cli to ignore invalid SSL "
+                        help="Tells rfpkgdb-cli to ignore invalid SSL "
                         "certificates")
     parser.add_argument('--pkgdburl', default=pkgdb2client.PKGDB_URL,
                         help="Base url of the pkgdb instance to query.")

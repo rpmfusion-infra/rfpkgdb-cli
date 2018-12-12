@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
 """
-# pkgdb2 - a commandline frontend for the Fedora package database v2
+# rfpkgdb2 - a commandline frontend for the Rpmfusion package database v2
 #
 # Copyright (C) 2014-2015 Red Hat Inc
 # Copyright (C) 2013 Pierre-Yves Chibon
 # Author: Pierre-Yves Chibon <pingou@pingoured.fr>
+#
+# RPMFusion version by FeRD (Frank Dana)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,13 +25,13 @@ import logging
 import koji
 import itertools
 
-from pkgdb2client import PkgDB, PkgDBException, __version__
-import pkgdb2client
-import pkgdb2client.utils as utils
+from rfpkgdb2client import PkgDB, PkgDBException, __version__
+import rfpkgdb2client
+import rfpkgdb2client.utils as utils
 
 
 pkgdbclient = PkgDB(
-    pkgdb2client.PKGDB_URL, login_callback=pkgdb2client.ask_password)
+    rfpkgdb2client.PKGDB_URL, login_callback=rfpkgdb2client.ask_password)
 
 BOLD = "\033[1m"
 RED = "\033[0;31m"
@@ -37,11 +39,11 @@ RESET = "\033[0;0m"
 
 # Initial simple logging stuff
 logging.basicConfig()
-PKGDBLOG = logging.getLogger("pkgdb2client")
-LOG = logging.getLogger("pkgdb-cli")
+PKGDBLOG = logging.getLogger("rfpkgdb2client")
+LOG = logging.getLogger("rfpkgdb-cli")
 
 ACTIONLIST = ['watchbugzilla', 'watchcommits', 'commit', 'approveacls']
-KOJI_HUB = pkgdb2client.KOJI_HUB
+KOJI_HUB = rfpkgdb2client.KOJI_HUB
 
 
 class ActionError(Exception):
@@ -213,15 +215,15 @@ def setup_parser():
     parser.add_argument('--insecure', action='store_true', default=False,
                         help="Tells pkgdb-cli to ignore invalid SSL "
                         "certificates")
-    parser.add_argument('--pkgdburl', default=pkgdb2client.PKGDB_URL,
+    parser.add_argument('--pkgdburl', default=rfpkgdb2client.PKGDB_URL,
                         help="Base url of the pkgdb instance to query.")
-    parser.add_argument('--fasurl', default=pkgdb2client.FAS_URL,
+    parser.add_argument('--fasurl', default=rfpkgdb2client.FAS_URL,
                         help="Base url of the FAS instance to query.")
-    parser.add_argument('--bzurl', default=pkgdb2client.BZ_URL,
+    parser.add_argument('--bzurl', default=rfpkgdb2client.BZ_URL,
                         help="Base url of the bugzilla instance to query.")
-    parser.add_argument('--cgiturl', default=pkgdb2client.CGIT_URL,
+    parser.add_argument('--cgiturl', default=rfpkgdb2client.CGIT_URL,
                         help="Base url of the cgit instance to query.")
-    parser.add_argument('--kojihuburl', default=pkgdb2client.KOJI_HUB,
+    parser.add_argument('--kojihuburl', default=rfpkgdb2client.KOJI_HUB,
                         help="Base url of the koji-hub instance to query.")
 
     subparsers = parser.add_subparsers(title='actions')
@@ -495,7 +497,7 @@ def do_acl(args):
         if args.extra and namespace == 'rpms':
             # print the number of opened bugs
             LOG.debug("Query bugzilla")
-            bugbz = pkgdb2client.utils.get_bugz(args.package)
+            bugbz = rfpkgdb2client.utils.get_bugz(args.package)
             print("{0} bugs open (new, assigned, needinfo)".format(len(bugbz)))
 
     for pkg in sorted(
@@ -980,25 +982,25 @@ def main():
         LOG.setLevel(logging.INFO)
 
     global pkgdbclient
-    if arg.pkgdburl != pkgdb2client.PKGDB_URL:
+    if arg.pkgdburl != rfpkgdb2client.PKGDB_URL:
         print("Querying pkgdb at: %s" % arg.pkgdburl)
         pkgdbclient = PkgDB(
             arg.pkgdburl,
-            login_callback=pkgdb2client.ask_password)
+            login_callback=rfpkgdb2client.ask_password)
 
     pkgdbclient.insecure = arg.insecure
 
-    if arg.bzurl != pkgdb2client.BZ_URL:
+    if arg.bzurl != rfpkgdb2client.BZ_URL:
         if not arg.bzurl.endswith('xmlrpc.cgi'):
             arg.bzurl = '%s/xmlrpc.cgi' % arg.bzurl
         print("Querying bugzilla at: %s" % arg.bzurl)
         utils._get_bz(arg.bzurl, insecure=arg.insecure)
 
-    if arg.fasurl != pkgdb2client.FAS_URL:
+    if arg.fasurl != rfpkgdb2client.FAS_URL:
         print("Querying FAS at: %s" % arg.fasurl)
         utils._get_fas(arg.fasurl, insecure=arg.insecure)
 
-    if arg.kojihuburl != pkgdb2client.KOJI_HUB:
+    if arg.kojihuburl != rfpkgdb2client.KOJI_HUB:
         print("Querying koji at: %s" % arg.kojihuburl)
         global KOJI_HUB
         KOJI_HUB = arg.kojihuburl
