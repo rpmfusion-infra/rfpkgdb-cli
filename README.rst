@@ -1,13 +1,13 @@
-====================
-Fedora PackageDB-cli
-====================
+=======================
+RPMFusion PackageDB-cli
+=======================
 
 :Author: Pierre-Yves Chibon
 :Contact: pingou@fedoraproject.org
 :Date: Wed Jan 18 2017
 :Version: 2.14.1
 
-The `PackageDB-cli` is a commande line interface to the PackageDB of Fedora.
+The `rfpkgdb-cli` is a commande line interface to the PackageDB of RPMFusion.
 
 .. contents::
 
@@ -28,10 +28,10 @@ as the pkgdb2client.cli module containing the command line interface and the
 pkgdb2client.admin module containing a command line interface for admins to
 interact with `pkgdb2`_.
 
-
-The tarball of the releases can be found at:
-`https://fedorahosted.org/released/packagedb-cli/
-<https://fedorahosted.org/released/packagedb-cli/>`_
+In December 2018 the package was forked and adopted at rpmfusion as
+`rfpkgdb-cli` after being orphaned at Fedora, as it is still used
+with various RPMFusion infra tools and needed to be converted for
+Python 3 compatibility.
 
 ------------
 Installation
@@ -43,7 +43,7 @@ Install Prerequisites
 
 ::
 
-  yum install python-fedora
+  dnf install python-fedora
 
 
 Get and Run the Source
@@ -59,20 +59,20 @@ Get and Run the Source
 
 ::
 
-  mkvirtualenv pkgdb-cli --system-site-packages
+  mkvirtualenv rfpkgdb-cli --system-site-packages
 
 * Activate the virtual environment
 
 ::
 
-  workon pkgdb-cli
+  workon rfpkgdb-cli
 
 * Get the project
 
 ::
 
-  git clone http://git.fedorahosted.org/git/packagedb-cli.git
-  cd packagedb-cli
+  git clone http://github.com/rpmfusion-infra/rfpkgdb-cli.git
+  cd rfpkgdb-cli
 
 * Set up the project
 
@@ -84,6 +84,6 @@ Get and Run the Source
 
 ::
 
-  python pkgdb2client/cli.py
-  python pkgdb2client/admin.py
+  python rfpkgdb2client/cli.py
+  python rfpkgdb2client/admin.py
 
