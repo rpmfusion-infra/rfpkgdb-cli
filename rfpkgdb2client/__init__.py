@@ -25,7 +25,8 @@ from six.moves import input, xrange
 
 import rpmfusion_cert
 from fedora.client import AuthError
-from fedora.client import OpenIdBaseClient
+from rfpkgdb2client.openidbaseclient import OpenIdBaseClient
+import re
 
 
 class NullHandler(logging.Handler):
@@ -47,6 +48,8 @@ FAS_URL = r'https://admin.rpmfusion.org/accounts'
 BZ_URL = r'https://bugzilla.rpmfusion.org/xmlrpc.cgi'
 KOJI_HUB = r'https://koji.rpmfusion.org/kojihub'
 CGIT_URL = r'http://pkgs.rpmfusion.org/cgit'
+RPMFUSION_OPENID_API = 'https://id.rpmfusion.org/api/v1/'
+RPMFUSION_OPENID_RE = re.compile(r'^http(s)?:\/\/id\.(|stg.|dev.)?rpmfusion\.org(/)?')
 
 
 class PkgDBException(Exception):
@@ -145,7 +148,7 @@ class PkgDB(OpenIdBaseClient):
         for it.
         '''
         if not self.is_logged_in:
-            super(PkgDB, self).login(username, password, otp=None)
+            super(PkgDB, self).login(username, password, otp=None, openid_api=RPMFUSION_OPENID_API, openid_re=RPMFUSION_OPENID_RE)
 
     def call_api(self, path, params=None, data=None):
         ''' call the API.
