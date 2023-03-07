@@ -26,7 +26,7 @@ import datetime
 
 import requests
 import rpmfusion_cert
-import xmlrpclib
+import xmlrpc.client
 
 from bugzilla import Bugzilla
 from fedora.client import AccountSystem, AuthError
@@ -53,7 +53,7 @@ def _get_bz(url=rfpkgdb2client.BZ_URL, insecure=False):
 
     try:
         BZCLIENT.logged_in
-    except xmlrpclib.Error:
+    except xmlrpc.client.Error:
         bz_login()
 
     return BZCLIENT
@@ -76,7 +76,7 @@ def bz_login():
     print('To keep going, we need to authenticate against bugzilla'
           ' at {0}'.format(BZCLIENT.url))
 
-    username = raw_input("Bugzilla user: ")
+    username = input("Bugzilla user: ")
     password = getpass.getpass("Bugzilla password: ")
     BZCLIENT.login(username, password)
 
