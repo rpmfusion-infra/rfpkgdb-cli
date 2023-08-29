@@ -440,7 +440,7 @@ def get_rhel_cache(rhel_ver):
     base_url = 'https://infrastructure.fedoraproject.org/repo/json/'\
         'pkg_el%s.json'
 
-    url = base_url % rhel_ver
+    url = base_url % 8
     output_filename = os.path.join(
         tempfile.gettempdir(), '%s_%s' % (
             datetime.datetime.utcnow().date().strftime('%Y%m%d'),
