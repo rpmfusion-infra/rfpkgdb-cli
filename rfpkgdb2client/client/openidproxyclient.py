@@ -1,4 +1,3 @@
-#!/usr/bin/env python2 -tt
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2013-2014  Red Hat, Inc.
@@ -55,8 +54,8 @@ from kitchen.text.converters import to_bytes
 # For handling an exception that's coming from requests:
 import urllib3
 
-from fedora import __version__
-from fedora.client import AuthError, ServerError, FedoraServiceError
+from rfpkgdb2client.client import __version__
+from rfpkgdb2client.client import AuthError, ServerError, FedoraServiceError
 
 log = logging.getLogger(__name__)
 log.addHandler(NullHandler())

@@ -1,4 +1,3 @@
-#!/usr/bin/env python2 -tt
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2013-2015  Red Hat, Inc.
@@ -46,13 +45,13 @@ from functools import wraps
 from munch import munchify
 from kitchen.text.converters import to_bytes
 
-from fedora import __version__
-from fedora.client import (AuthError,
+from rfpkgdb2client.client import __version__
+from rfpkgdb2client.client import (AuthError,
                            LoginRequiredError,
                            ServerError,
                            UnsafeFileError,
                            check_file_permissions)
-from rfpkgdb2client.openidproxyclient import (
+from rfpkgdb2client.client.openidproxyclient import (
     OpenIdProxyClient, absolute_url, openid_login)
 
 log = logging.getLogger(__name__)
