@@ -25,7 +25,7 @@ from six.moves import input, xrange
 
 import rpmfusion_cert
 from fedora.client import AuthError
-from rfpkgdb2client.openidbaseclient import OpenIdBaseClient
+from fedora.client import OpenIdBaseClient
 import re
 
 
