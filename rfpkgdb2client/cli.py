@@ -226,7 +226,7 @@ def setup_parser():
     parser.add_argument('--kojihuburl', default=rfpkgdb2client.KOJI_HUB,
                         help="Base url of the koji-hub instance to query.")
 
-    subparsers = parser.add_subparsers(title='actions')
+    subparsers = parser.add_subparsers(title='actions', required=True)
 
     # ACL
     parser_acl = subparsers.add_parser(
