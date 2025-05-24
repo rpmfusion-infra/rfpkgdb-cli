@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rfpkgdb-cli"
+version = "2.15.3"
+description = "A command line tool to access the Rpmfusion Package Database."
+readme = "README.md"  # Se tiveres
+license = { text = "GPLv2+" }
+authors = [
+  { name = "Pierre-Yves Chibon", email = "pingou@pingoured.fr" },
+]
+maintainers = [
+  { name = "FeRD (Frank Dana)", email = "ferdnyc@gmail.com" },
+  { name = "Sérgio Basto", email = "sergiomb@rpmfusion.org" },
+]
+keywords = ["rpmfusion", "cli", "packages", "database"]
+dependencies = [
+  "requests",
+  "python-bugzilla",
+  "python-rpmfusion",
+  "setuptools",
+  "six",
+  "beautifulsoup4"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 2.6",
+  "Programming Language :: Python :: 2.7",
+  "Topic :: Software Development :: Libraries"
+]
+
+[project.urls]
+homepage = "https://github.com/rpmfusion-infra/rfpkgdb-cli/"
+download = "https://github.com/rpmfusion-infra/rfpkgdb-cli/archive/refs/tags/v2.15.2.tar.gz"
+
+[project.scripts]
+rfpkgdb-cli = "rfpkgdb2client.cli:main"
+rfpkgdb-admin = "rfpkgdb2client.admin:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rfpkgdb2client"]
+
