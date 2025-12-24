@@ -106,7 +106,15 @@ def comment_on_bug(bugid, comment):
     '''
     bug = get_bug(bugid)
 
-    bug.addcomment(comment)
+    try:
+        bug.addcomment(comment)
+    except xmlrpc.client.Fault as e:
+        if e.faultCode == 410:  # Not logged in
+            print("Not logged in, calling bz_login()...")
+            bz_login()
+            bug.addcomment(comment)
+        else:
+            raise
 
     return bug
 
@@ -154,9 +162,16 @@ def get_users_in_bug(bugid):
         bugbz = get_bug(int(bugid))
     except ValueError:
         bugbz = bugid
-    users = set([com['author'] for com in bugbz.comments])
-    users.add(bugbz.creator)
+    comments = bugbz.getcomments()
+    if isinstance(comments, dict):
+        comments = comments.get(bugbz.id, [])
+    users = {com['creator'] for com in comments}
+    creator = bugbz.creator
+    users.add(creator)
 
+    # Print para debug
+    print("Bug creator:", creator)
+    print("Users:", users)
     return users
 
 
@@ -240,6 +255,7 @@ def is_packager(user):
     '''
     FASCLIENT = _get_fas()
 
+    print(user)
     if '@' in user:
         fas_user = __get_fas_user_by_email(user.strip())
     else:
@@ -310,6 +326,7 @@ def check_package_creation(info, bugid, pkgdbclient, requester):
                                "by {1}".format(bug_creator_full, requester))
 
     # Check who updated the fedora-review flag to +
+    print("Check who updated the fedora-review flag to +")
     fedora_review_checked = False
     for flag in bug.flags:
         if flag['name'] == 'fedora-review':
@@ -317,7 +334,7 @@ def check_package_creation(info, bugid, pkgdbclient, requester):
             if flag['status'] == '+':
                 flag_setter_email = flag['setter']
                 flag_setter, flag_setter_full = get_fasinfo(flag_setter_email)
-                if is_packager(flag_setter):
+                if is_packager(flag_setter.decode('utf-8')):
                     messages["good"].append(
                         'Review approved by packager `{0}`'.format(
                             flag_setter_full))
