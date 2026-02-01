@@ -154,8 +154,12 @@ def get_users_in_bug(bugid):
         bugbz = get_bug(int(bugid))
     except ValueError:
         bugbz = bugid
-    users = set([com['author'] for com in bugbz.comments])
-    users.add(bugbz.creator)
+    comments = bugbz.getcomments()
+    if isinstance(comments, dict):
+        comments = comments.get(bugbz.id, [])
+    users = {com['creator'] for com in comments}
+    creator = bugbz.creator
+    users.add(creator)
 
     return users
 
@@ -317,7 +321,7 @@ def check_package_creation(info, bugid, pkgdbclient, requester):
             if flag['status'] == '+':
                 flag_setter_email = flag['setter']
                 flag_setter, flag_setter_full = get_fasinfo(flag_setter_email)
-                if is_packager(flag_setter):
+                if is_packager(flag_setter.decode('utf-8')):
                     messages["good"].append(
                         'Review approved by packager `{0}`'.format(
                             flag_setter_full))
