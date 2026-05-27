@@ -19,7 +19,7 @@
 
 import getpass
 import logging
-import pkg_resources
+from importlib.metadata import version
 
 from six.moves import input, xrange
 
@@ -42,7 +42,7 @@ LOG = logging.getLogger("rfpkgdb2client")
 hand = NullHandler()
 LOG.addHandler(hand)
 
-__version__ = pkg_resources.get_distribution('rfpkgdb-cli').version
+__version__ = version('rfpkgdb-cli')
 PKGDB_URL = r'https://admin.rpmfusion.org/pkgdb'
 FAS_URL = r'https://admin.rpmfusion.org/accounts'
 BZ_URL = r'https://bugzilla.rpmfusion.org/xmlrpc.cgi'
