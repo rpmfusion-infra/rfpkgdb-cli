@@ -6,8 +6,8 @@ build-backend = "setuptools.build_meta"
 name = "rfpkgdb-cli"
 version = "2.15.3"
 description = "A command line tool to access the Rpmfusion Package Database."
-readme = "README.md"  # Se tiveres
-license = { text = "GPLv2+" }
+readme = "README.rst"
+license = "GPL-2.0-or-later"
 authors = [
   { name = "Pierre-Yves Chibon", email = "pingou@pingoured.fr" },
 ]
@@ -28,10 +28,8 @@ classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
   "Operating System :: OS Independent",
-  "Programming Language :: Python :: 2.6",
-  "Programming Language :: Python :: 2.7",
+  "Programming Language :: Python :: 3",
   "Topic :: Software Development :: Libraries"
 ]
 
